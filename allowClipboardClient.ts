@@ -45,14 +45,14 @@ module AllowClipboard.Client {
             }, false);
         }
 
-        public clipboardRead(callback: (success: boolean, data: string) => void = () => {}) {
+        public read(callback: (success: boolean, data: string) => void = () => {}) {
             var operationId = AllowClipboard.Common.Guid.newGuid();
             this._readCallbacks[operationId] = callback;
             var clipboardReadEvent = new AllowClipboard.Common.AllowClipboardReadMessage(this._clientId, operationId);
             window.postMessage(clipboardReadEvent, "*");
         }
 
-        public clipboardWrite(data: string, callback: (success: boolean) => void = () => { }) {
+        public write(data: string, callback: (success: boolean) => void = () => { }) {
             var operationId = AllowClipboard.Common.Guid.newGuid();
             this._writeCallbacks[operationId] = callback;
             var clipboardWriteEvent = new AllowClipboard.Common.AllowClipboardWriteMessage(this._clientId, operationId, data);
