@@ -22,7 +22,7 @@ This project is written primarily in TypeScript using Visual Studio 2013. TypeSc
 
 # Example
 In Webpage Context:</br>
-```
+```javascript
 var clipboardClient = new AllowClipboard.Client.ClipboardClient();
 clipboardClient.clipboardWrite("Worked!", function(success){console.log(success)});
 clipboardClient.clipboardRead(function(success,data){console.log(data)});
