@@ -2,6 +2,7 @@
 
 //Runs in the context of the webpage but isolated.
 module AllowClipboard.ContentScript {
+    var userAllowedClipboard:boolean;
 
     /* Add the client API to the web page */
     var clientScript = document.createElement('script');
@@ -22,6 +23,15 @@ module AllowClipboard.ContentScript {
         var message = <AllowClipboard.Common.IAllowClipboardMessage> event.data;
 
         if (message.type != "AllowClipboard") {
+            return;
+        }
+
+        if (typeof userAllowedClipboard === 'undefined') {
+            userAllowedClipboard = confirm('Allow this webpage to access your Clipboard?');
+        }
+
+        if (!userAllowedClipboard) {
+            window.postMessage(new AllowClipboard.Common.AllowClipboardResponseMessage(message.operation, message.clientId, message.operationId, false), "*");
             return;
         }
 

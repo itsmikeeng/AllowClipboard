@@ -10,7 +10,6 @@
         success: boolean;
     }
 
-    /* Abstract class do not use */
     export class AllowClipboardMessage implements IAllowClipboardMessage {
         type: string;
         clientId: string;
@@ -40,8 +39,7 @@
         }
     }
     
-    /* Abstract class do not use */
-    export class AllowClipboardMessageResponse implements IAllowClipboardResponseMessage {
+    export class AllowClipboardResponseMessage implements IAllowClipboardResponseMessage {
         type: string;
         clientId: string;
         operation: string;
@@ -57,7 +55,7 @@
         }
     }
 
-    export class AllowClipboardReadResponseMessage extends AllowClipboardMessageResponse {
+    export class AllowClipboardReadResponseMessage extends AllowClipboardResponseMessage {
         data: string;
 
         constructor(clientId: string, operationId: string, success: boolean, data: string) {
@@ -66,7 +64,7 @@
         }
     }
 
-    export class AllowClipboardWriteResponseMessage extends AllowClipboardMessageResponse {
+    export class AllowClipboardWriteResponseMessage extends AllowClipboardResponseMessage {
         constructor(clientId: string, operationId: string, success: boolean) {
             super("Write", clientId, operationId, success);
         }
