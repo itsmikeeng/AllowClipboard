@@ -4,7 +4,6 @@
 
 /obj/Debug
 /packages
-/Scripts/typings
 /bin
 /AllowClipboardExtension/allowClipboardClient.js
 /AllowClipboardExtension/allowClipboardContentScript.js

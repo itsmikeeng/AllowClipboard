@@ -78,15 +78,12 @@
     <TypeScriptCompile Include="Scripts\typings\webrtc\MediaStream.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\webrtc\RTCPeerConnection.d.ts" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scripts\typings\angularjs\" />
-    <Folder Include="Scripts\typings\jquery\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="LICENSE" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
   </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <TypeScriptOutDir>AllowClipboardExtension</TypeScriptOutDir>
