@@ -5,6 +5,8 @@
 /obj/Debug
 /packages
 /bin
+/AllowClipboard.csproj.user
+/AllowClipboard.v12.suo
 /AllowClipboardExtension/allowClipboardClient.js
 /AllowClipboardExtension/allowClipboardContentScript.js
 /AllowClipboardExtension/background.js
