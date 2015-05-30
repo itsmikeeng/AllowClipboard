@@ -1,6 +1,10 @@
 # AllowClipboard
 Chrome Extension that allows clipboard read and write without user interaction. Normally Chrome does not allow JavaScript access to the Clipboard without a user interaction (e.g. click). AllowClipboard extension can be useful in situations where clipboard access is needed out of band, such as during an asynchronous method call from the server.
 
+# Chrome Extension
+<a href="https://chrome.google.com/webstore/detail/allow-clipboard/bgafccceonganlcmcojjacanoadnhmac?hl=en-US&gl=US">Allow Clipboard - Chrome Web Store</a>
+
+
 # Overview
 This project is written primarily in TypeScript using Visual Studio 2013. TypeScript files are compiled to JavaScript and placed in the AllowClipboardExtension folder of the project folder.
 
