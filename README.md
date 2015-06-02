@@ -5,7 +5,7 @@ Chrome Extension that allows clipboard read and write without user interaction. 
 <a href="https://chrome.google.com/webstore/detail/allow-clipboard/bgafccceonganlcmcojjacanoadnhmac?hl=en-US&gl=US">Allow Clipboard - Chrome Web Store</a>
 
 # NuGet
-Client TypeScript: <a hreft="https://www.nuget.org/packages/AllowClipboard.Client.TypeScript/1.0.2.2">https://www.nuget.org/packages/AllowClipboard.Client.TypeScript/1.0.2.2</a>
+Client TypeScript: <a hreft="https://www.nuget.org/packages/AllowClipboard.Client.TypeScript/1.0.2.3">https://www.nuget.org/packages/AllowClipboard.Client.TypeScript/1.0.2.3</a>
 
 # Overview
 This project is written primarily in TypeScript using Visual Studio 2013. TypeScript files are compiled to JavaScript and placed in the AllowClipboardExtension folder of the project folder.
