@@ -1,8 +1,11 @@
-﻿///<reference path="references.ts" />
+﻿///<reference path="common.ts" />
 
 //Runs in the context of the webpage but isolated.
 module AllowClipboard.ContentScript {
-    var userAllowedClipboard:boolean;
+    interface IStoredSettings {
+        allowedSites: { [hostName: string]: boolean };
+        disablePrompt: boolean;
+    }
 
     /* Add the client API to the web page */
     var clientScript = document.createElement('script');
@@ -19,38 +22,50 @@ module AllowClipboard.ContentScript {
         if (event.source != window) {
             return;
         }
-        
-        var message = <AllowClipboard.Common.IAllowClipboardMessage> event.data;
+
+        var message = <AllowClipboard.Common.IAllowClipboardMessage>event.data;
 
         if (message.type != "AllowClipboard") {
             return;
         }
 
-        if (typeof userAllowedClipboard === 'undefined') {
-            userAllowedClipboard = confirm('Allow this webpage to access your Clipboard?');
-        }
+        let userAllowedClipboard: boolean;
+        let currentHostname: string = window.location.hostname;
+        let allowedSites: { [hostname: string]: boolean };
 
-        if (!userAllowedClipboard) {
-            window.postMessage(new AllowClipboard.Common.AllowClipboardResponseMessage(message.operation, message.clientId, message.operationId, false), "*");
-            return;
-        }
+        chrome.storage.sync.get({ "allowedSites": {}, disablePrompt: false }, (items: IStoredSettings) => {
+            userAllowedClipboard = items.allowedSites[currentHostname] || items.disablePrompt;
+            allowedSites = items.allowedSites || {};
 
-        switch (message.operation) {
-            case "Read":
-                var readMessage = <AllowClipboard.Common.AllowClipboardReadMessage> message;
-                chrome.runtime.sendMessage(readMessage, (response:AllowClipboard.Common.AllowClipboardReadResponseMessage) => {
-                    window.postMessage(response, "*");
-                });
-                break;
-            case "Write":
-                var writeMessage = <AllowClipboard.Common.AllowClipboardWriteMessage> message;
-                chrome.runtime.sendMessage(writeMessage,(response: AllowClipboard.Common.AllowClipboardWriteResponseMessage) => {
-                    window.postMessage(response, "*");
-                });
-                break;
-            default:
-                console.log("Unknown AllowClipboard operation: " + message.operation);
-        }
+            if (!userAllowedClipboard && confirm('Allow this webpage to access your Clipboard?')) {
+                allowedSites[currentHostname] = true;
+                chrome.storage.sync.set({ "allowedSites": allowedSites }, () => { });
+            }
+
+            if (!userAllowedClipboard) {
+                window.postMessage(new AllowClipboard.Common.AllowClipboardResponseMessage(message.operation, message.clientId, message.operationId, false), "*");
+                return;
+            }
+
+            switch (message.operation) {
+                case "Read":
+                    var readMessage = <AllowClipboard.Common.AllowClipboardReadMessage>message;
+                    chrome.runtime.sendMessage(readMessage, (response: AllowClipboard.Common.AllowClipboardReadResponseMessage) => {
+                        window.postMessage(response, "*");
+                    });
+                    break;
+                case "Write":
+                    var writeMessage = <AllowClipboard.Common.AllowClipboardWriteMessage>message;
+                    chrome.runtime.sendMessage(writeMessage, (response: AllowClipboard.Common.AllowClipboardWriteResponseMessage) => {
+                        window.postMessage(response, "*");
+                    });
+                    break;
+                default:
+                    console.log("Unknown AllowClipboard operation: " + message.operation);
+            }
+        });
+
+
     }, false);
-}
 
+}
