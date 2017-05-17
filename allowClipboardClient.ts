@@ -1,4 +1,4 @@
-﻿///<reference path="references.ts" />
+﻿///<reference path="common.ts" />
 
 //Gets loaded by Content Script and runs in the context of the web page.
 module AllowClipboard.Client {

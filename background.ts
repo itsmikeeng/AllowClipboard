@@ -1,4 +1,4 @@
-﻿///<reference path="references.ts" />
+﻿///<reference path="common.ts" />
 
 //Runs in the context of the chrome extension background.
 module AllowClipboard {

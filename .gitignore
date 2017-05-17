@@ -12,3 +12,6 @@
 /AllowClipboardExtension/background.js
 /AllowClipboardExtension/common.js
 /AllowClipboardExtension/references.js
+
+/node_modules
+/.vscode

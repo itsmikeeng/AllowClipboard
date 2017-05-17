@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "module": "es2015",
+        "target": "es5",
+        "noImplicitAny": false,
+        "sourceMap": false,
+        "moduleResolution": "node",
+        "outDir": "AllowClipboardExtension",
+        "removeComments": true,
+        "lib": ["es2015", "dom"]
+    },
+    "files": [
+        "allowClipboardClient.ts",
+        "allowClipboardContentScript.ts",
+        "background.ts",
+        "common.ts"
+    ]
+}
