@@ -1,6 +1,6 @@
 {
   "name": "allowclipboard",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Chrome extension for accessing the clipboard without user interaction",
   "main": "index.js",
   "dependencies": {},
